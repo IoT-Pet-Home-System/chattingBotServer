@@ -1,4 +1,4 @@
-<H4>[- Go To Main-Repository](https://github.com/kuj0210/IoT-Pet-Home-System)<H4>
+- [Go To Main-Repository](https://github.com/kuj0210/IoT-Pet-Home-System)
 
 # <img src="https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/chatbot%20image.jpg?raw=true" width="64">IoT-Pet-Home-System : ChattingBot Server
 
