@@ -1,3 +1,10 @@
+'''
+Copyright (c) IoT-Pet-Home-system team : Woo-jin Kim, Keon-hee Lee, Dae-seok Ko
+LICENSE : GPL v3 LICENSE
+
+- Description : https://github.com/kuj0210/IoT-Pet-Home-System
+- If you want to contact us, please send mail "beta1360@naver.com"
+'''
 OPEN_MSG = """
         안녕하세요!!! IoT-Pet-Home-System 시스템입니다.
         무엇을 도와드릴까요?
@@ -10,7 +17,6 @@ ON_FRIEND_MSG = "안녕하세요! IoT-Pet-Home-System이에요! 친구가 되서
 OFF_FRIEND_MSG = "더는 친구가 아니게 되었네요... 즐거웠어요"
 
 # for regist EV
-##성공
 SUCESS_IST_USER = "등록 완료"
 SUCESS_DEL_NO_REGISTERD_USER = "미등록 유저입니다. 모든 정보들이 삭제되었습니다"
 SUCESS_DEL_REGISTERD_USER = "등록 시 넣은 정보들이 정상 삭제 되었습니다."

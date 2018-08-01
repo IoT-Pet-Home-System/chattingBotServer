@@ -1,3 +1,10 @@
+'''
+Copyright (c) IoT-Pet-Home-system team : Woo-jin Kim, Keon-hee Lee, Dae-seok Ko
+LICENSE : GPL v3 LICENSE
+
+- Description : https://github.com/kuj0210/IoT-Pet-Home-System
+- If you want to contact us, please send mail "beta1360@naver.com"
+'''
 ## Error Messages
 REGISTERD_USER = "이미 등록된 유저입니다."
 NO_REGISTERD_SERIAL = "잘못된 시리얼번호입니다."
