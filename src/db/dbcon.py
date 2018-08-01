@@ -1,4 +1,4 @@
 host = "localhost"
 user = "root"
-pw = "1234"
+pw = "root"
 charset = "utf8"

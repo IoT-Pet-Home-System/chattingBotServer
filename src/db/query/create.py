@@ -5,8 +5,7 @@ DB_QUERY = '''
 create database %s
 	DEFAULT CHARACTER
 	SET utf8 collate utf8_general_ci;
-    %s;
-			''' % (util.DB_NAME, util.USE_DB_QUERY)
+    ''' % (util.DB_NAME)
 
 USER_TABLE_QUERY = '''
 create table %s (

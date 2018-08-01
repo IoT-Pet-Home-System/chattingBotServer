@@ -23,6 +23,7 @@ Memo = Cache()
 def naver_Servermain():
     # make manager
     Manager = Handler()
+
     # get data from naver  talk talk
     dataFromMessenger =request.get_json()# get json data from naver talk talk
     infomationFromNaverTalk=Manager.getDataFromNaverTalk(dataFromMessenger) # it is process for data sorting
@@ -88,4 +89,4 @@ def not_allow_method(error):
 
 if __name__ == "__main__":
     contextSSL = (config.cert, config.key)
-    app.run(host='0.0.0.0', port=443, debug = True, ssl_context = contextSSL)
+    app.run(host='0.0.0.0', port=8000, debug = True)#, ssl_context = contextSSL)

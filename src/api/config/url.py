@@ -1,1 +1,1 @@
-SERVER_URL = 'https://kit-iot-system.tk/'
+SERVER_URL = "http://localhost:8000/"
