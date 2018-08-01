@@ -4,7 +4,7 @@ import json
 import requests
 
 SERVER = "127.0.0.1"
-PORT = 443
+PORT = 8000
 
 def attachSendProtocol(message):
     param = {'user_key':'test', 'content':message, 'type':'text'}
