@@ -1,4 +1,4 @@
-# memo module
+# file module
 
 This module memorize cache related a images recieving from pet-homes and if this cache isn't unecessary, this module delete it.
 
