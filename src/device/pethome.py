@@ -5,8 +5,9 @@ LICENSE : GPL v3 LICENSE
 - Description : https://github.com/kuj0210/IoT-Pet-Home-System
 - If you want to contact us, please send mail "beta1360@naver.com"
 '''
-from src.db.Register import Register
-from src.api import sender, util
+from db.Register import Register
+from api import sender, util
+from reply import message
 
 class Pethome:
     def __init__(self):
@@ -39,3 +40,18 @@ class Pethome:
         if rq == False:
             return "NO"
         return rq
+
+    def sendOperationPush(self, request):
+        dataFromDevice = request.get_json()
+        print(dataFromDevice)
+        serial = dataFromDevice["device"]
+        user_list = self.regist.getUserListFromSerial(serial)
+
+        for user in user_list:
+            name = self.regist.getPetName(user)
+            msg = message.operationPushMSG(name, dataFromDevice)
+            sender.sendPush(util.PUSH_URL, user, msg)
+        return "OK"
+
+
+

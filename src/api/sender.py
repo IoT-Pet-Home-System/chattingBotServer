@@ -6,7 +6,7 @@ LICENSE : GPL v3 LICENSE
 - If you want to contact us, please send mail "beta1360@naver.com"
 '''
 import requests, json
-from src.api.config import Authorization
+from api.config import Authorization
 from . import util, payload
 
 def sendPush(url, user, msg):

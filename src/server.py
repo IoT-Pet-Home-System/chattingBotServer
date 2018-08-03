@@ -9,13 +9,16 @@ LICENSE : GPL v3 LICENSE
 from flask import Flask,request,jsonify,send_from_directory, render_template
 from flask_sslify import SSLify
 
-from src.file.sr_image import imageIO, initDir
-from src.file.cache import Cache
-from src.nl import usecase_finder
-from src.api.handler import Handler
-from src.auth.signup import *
-from src.ssl import config
-from src.device.pethome import Pethome
+from file.sr_image import imageIO, initDir
+from file.cache import Cache
+from nl import usecase_finder
+from api.handler import Handler
+from api import sender, util
+from auth.signup import *
+from ssl_config import config
+from device.pethome import Pethome
+
+from reply import message, exception
 
 THusecaseFinder = usecase_finder.UsecaseFinder()
 UPLOAD_FOLDER = 'uploaded'
@@ -54,6 +57,10 @@ def pushResult():
     pethome = Pethome()
     return pethome.push(request)
 
+@app.route("/operation", methods=["POST"])
+def operationPush():
+    pethome = Pethome()
+    return pethome.sendOperationPush(request), 200
  
 @app.route("/<user>/image",methods=["POST",'GET'])
 def image(user):
@@ -76,12 +83,10 @@ def sign_up(temp_user_key):
         user_key, is_registed = sigup(temp_user_key=temp_user_key, form=request.form)
         regist.insertUserRequest(user_key, "UPDATE")
         if is_registed:
-            #msg = payload.getPostPushMessage(user=user_key, text=util.SUCESS_TO_REGIST)
-            #sender.sendPush(url=util.PUSH_URL, user=user_key, msg=msg)
+            sender.sendPush(url=util.PUSH_URL, user=user_key, msg=message.SUCCESS_TO_REGIST)
             return render_template("regist_success.html"), 200
         else:
-            #msg = payload.getPostPushMessage(user=user_key, text=util.FAIL_TO_REGIST_USER)
-            #sender.sendPush(url=util.PUSH_URL, user=user_key, msg=msg)
+            sender.sendPush(url=util.PUSH_URL, user=user_key, msg=exception.FAIL_TO_REGIST_USER)
             return render_template("regist_fail.html"), 200
 
 @app.errorhandler(404)
@@ -96,4 +101,4 @@ def not_allow_method(error):
 
 if __name__ == "__main__":
     contextSSL = (config.cert, config.key)
-    app.run(host='0.0.0.0', port=8000, debug = True)#, ssl_context = contextSSL)
+    app.run(host='0.0.0.0', port=443, debug = True, ssl_context = contextSSL)

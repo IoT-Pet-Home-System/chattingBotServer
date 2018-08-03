@@ -5,11 +5,11 @@ LICENSE : GPL v3 LICENSE
 - Description : https://github.com/kuj0210/IoT-Pet-Home-System
 - If you want to contact us, please send mail "beta1360@naver.com"
 '''
-from src.db import Register
-from src.nl import usecase_finder
-from src.reply import reply, exception
+from db import Register
+from nl import usecase_finder
+from reply import message, exception
 
-from src.auth import IDissuance
+from auth import IDissuance
 from . import util, payload
 
 class Handler:
@@ -21,17 +21,17 @@ class Handler:
         sendMSG = "None"
         user = infomationFromNaverTalk["user"]
         if infomationFromNaverTalk["event"] == util.OEPN_EVENT:
-            sendMSG = reply.OPEN_MSG
+            sendMSG = message.OPEN_MSG
 
         elif infomationFromNaverTalk["event"] == util.LEAVE_EVENT:
-            sendMSG = reply.LEAVE_MSG
+            sendMSG = message.LEAVE_MSG
 
         elif infomationFromNaverTalk["event"] == util.FRIEND_EVENT:
             if infomationFromNaverTalk["state"] == "on":
-                sendMSG = reply.ON_FRIEND_MSG
+                sendMSG = message.ON_FRIEND_MSG
             else:
                 self.regist.insertUserRequest(user, "UPDATE")
-                sendMSG = reply.OFF_FRIEND_MSG + "\n" + self.regist.deleteUserData(user)
+                sendMSG = message.OFF_FRIEND_MSG + "\n" + self.regist.deleteUserData(user)
 
         elif infomationFromNaverTalk["event"] == util.ECHO_EVENT:
             return "Echo"
@@ -53,14 +53,14 @@ class Handler:
 
         if "howToUse" in requestlist:
             print("도움 ")
-            smsg = reply.HOW_TO_USE
+            smsg = message.HOW_TO_USE
             return smsg
 
         elif "regist" in requestlist:
             id = self.IDI.getTempID(user)
             if self.regist.insertTempID(user, id) == False:
                 return exception.REGISTERD_USER
-            return util.REGIST_URL+id
+            return "아래의 사용자 등록 폼에 따라 등록을 해주세요.\n"+util.REGIST_URL+id
 
         else :
             res=self.regist.insertUserRequest(user," ".join(requestlist))

@@ -7,8 +7,8 @@ LICENSE : GPL v3 LICENSE
 '''
 import pymysql
 from .query import create, delete, insert, select, update, util
-from src.reply import reply
-from src.reply import exception
+from reply import message
+from reply import exception
 
 class Register:
 	def __init__(self):
@@ -146,8 +146,10 @@ class Register:
 		try:
 			self.curs.execute(select.petNameByUserKey(user_key))
 			rows = self.curs.fetchone()
+			result = " ".join(rows)
+			print(result)
 			self.closeDB()
-			return " ".join(rows)
+			return result
 		except:
 			self.closeDB()
 			return exception.FAIL_TO_SELECT
@@ -166,7 +168,7 @@ class Register:
 			self.curs.execute(insert.userTable(user_key,serial, email, petname))
 			self.conn.commit()
 			self.closeDB()
-			return reply.SUCESS_IST_USER
+			return message.SUCESS_IST_USER
 		except:
 			self.closeDB()
 			return exception.DONT_REGIST
@@ -182,7 +184,7 @@ class Register:
 			self.curs.execute(insert.requestTable(user_key, serial, request))
 			self.conn.commit()
 			self.closeDB()
-			return reply.SUCESS_RECEVIED_MSG
+			return message.SUCESS_RECEVIED_MSG
 		except:
 			self.closeDB()
 			return exception.UNSUPPORTED_TYPE_COMMAND
@@ -215,12 +217,12 @@ class Register:
 		self.curs = self.conn.cursor()
 
 		if self.checkRegistedUser(user_key) == False:
-			return reply.SUCESS_DEL_NO_REGISTERD_USER
+			return message.SUCESS_DEL_NO_REGISTERD_USER
 		try:
 			self.curs.execute(delete.userTableByUserKey(user_key))
 			self.conn.commit()
 			self.closeDB()
-			return reply.SUCESS_DEL_REGISTERD_USER
+			return message.SUCESS_DEL_REGISTERD_USER
 		except:
 			self.closeDB()
 			return  exception.DEL_REGISTERD_USER
@@ -276,7 +278,30 @@ class Register:
 				return False
 			return rows[0][0]
 		except:
-			return  exception.SELECT_FROM_CHECKING_SERIAL
+			return exception.SELECT_FROM_CHECKING_SERIAL
+
+	def getUserListFromSerial(self, serial):
+		self.openDB()
+		self.curs = self.conn.cursor()
+
+		if self.checkRegistedSerial(serial) == False:
+			return exception.NO_REGISTERD_SERIAL
+
+		try:
+			self.curs.execute(select.userKeyBySerial(serial))
+			rows = self.curs.fetchall()
+			user_list = []
+
+			for row in rows:
+				print(row[0])
+				user_list.append(row[0])
+
+			self.closeDB()
+			return user_list
+
+		except:
+			self.closeDB()
+			return exception.SELECT_FROM_CHECKING_SERIAL
 
 	def getUserFromSerial(self, serial):
 		self.openDB()

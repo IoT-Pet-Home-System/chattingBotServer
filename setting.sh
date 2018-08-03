@@ -36,19 +36,25 @@ read cert_key
 
 payload="cert = \"$cert\"\nkey = \"$cert_key\""
 
-if [[ -e `ls $cert`] && [ -e `ls $cert_key` ]]; then
-    if [ -e `ls $SSL_PATH` ]; then
-        rm -rf "$SSL_PATH"
-        touch "$SSL_PATH"
-        echo -e $payload >> "$SSL_PATH"
+if [ -e `sudo ls $cert` ]; then
+    if [ -e `sudo ls $cert_key` ]; then
+        if [ -e `ls $SSL_PATH` ]; then
+            rm -rf "$SSL_PATH"
+            touch "$SSL_PATH"
+            echo -e $payload >> "$SSL_PATH"
+        else
+            touch "$SSL_PATH"
+            echo -e $payload >> "$SSL_PATH"
+        fi
     else
-        touch "$SSL_PATH"
-        echo -e $payload >> "$SSL_PATH"
+        echo -e "\033[0;31m[Setting Error] SSL certificate does not exist.\033[0m"
+        exit
     fi
 else
     echo -e "\033[0;31m[Setting Error] SSL certificate does not exist.\033[0m"
     exit
 fi
+
 echo -e "\033[0;34m[SUCCESS] \033[1;36mRenew(Create) /api/config/url.py\033[0m"
 echo -e "\033[0;34m[SUCCESS] \033[1;36mRenew(Create) /ssl/config.py\033[0m"
 
@@ -80,7 +86,7 @@ read db_user
 echo -e "- password: \c"
 read -s db_pwd
 
-payload="host = \"$db_host\"\nuser = \"$db_user\"\npassword = \"$db_pwd\"\ncharset = \"utf8\""
+payload="host = \"$db_host\"\nuser = \"$db_user\"\npw = \"$db_pwd\"\ncharset = \"utf8\""
 
 if [ -e `ls $DBCON_PATH` ]; then
     rm -rf "$DBCON_PATH"

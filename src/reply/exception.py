@@ -15,6 +15,7 @@ FAIL_TO_SELECT = "[유저 조회 에러]"
 
 SELECT_FROM_CHECKING_SERIAL = "시리얼 확인중 알 수 없는 에러가 발생 했습니다"
 SELECT_FROM_CHECKING_USER = "유저 확인중 알 수 없는 에러가 발생 했습니다"
+FAIL_TO_REGIST_USER = "사용자 등록에 실패하셨습니다."
 
 # for message EV
 UNSUPPORTED_TYPE_COMMAND = "현재 지원하지 않는 타입의 메세지예요 ㅠㅠ"

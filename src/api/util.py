@@ -5,7 +5,7 @@ LICENSE : GPL v3 LICENSE
 - Description : https://github.com/kuj0210/IoT-Pet-Home-System
 - If you want to contact us, please send mail "beta1360@naver.com"
 '''
-from src.api.config import url
+from api.config import url
 
 PUSH_URL = "https://gw.talk.naver.com/chatbot/v1/event"
 UPDATE_URL = "https://gw.talk.naver.com/chatbot/v1/imageUpload HTTP/1.1"

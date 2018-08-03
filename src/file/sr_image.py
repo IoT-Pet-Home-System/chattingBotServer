@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 
 from . import cache
-from src.api import sender, util
+from api import sender, util
 
 def initDir(path):
     try:

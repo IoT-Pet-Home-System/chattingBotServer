@@ -5,8 +5,8 @@ LICENSE : GPL v3 LICENSE
 - Description : https://github.com/kuj0210/IoT-Pet-Home-System
 - If you want to contact us, please send mail "beta1360@naver.com"
 '''
-from src.db.Register import Register
-from src.reply import exception
+from db.Register import Register
+from reply import exception
 
 def sigup(temp_user_key, form):
     register = Register()
