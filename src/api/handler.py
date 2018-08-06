@@ -66,8 +66,6 @@ class Handler:
             res=self.regist.insertUserRequest(user," ".join(requestlist))
             if len(requestlist) == 0:
                 return exception.UNKNOWN_COMMAND
-
-            #2 리퀘스트에 해당 시리얼 넣음
             return " ".join(requestlist)+res
 
     def getDataFromNaverTalk(self, dataFromMessenger):
@@ -82,7 +80,7 @@ class Handler:
 
         if "options" in dataFromMessenger and "set" in dataFromMessenger["options"]:
             dicForSaveUserData["state"] = dataFromMessenger["options"]["set"]
-
+            
         return dicForSaveUserData
 
 if __name__ == "__main__":
