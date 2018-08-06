@@ -118,6 +118,7 @@ addr varchar(100) primary key,
 serial VARCHAR(50)
   ```
   
+**This table is not currently in use.**
 This table stores the image received from "Pet Home System" and saves the path. When a new image comes in, it looks for the old image, deletes the file, and saves the path to the new image file.
  
  - **homeSystem**
