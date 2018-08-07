@@ -182,7 +182,7 @@ If you want to contact us, please send below mail.<br>
 
 ## LICENSE
 
-IoT-Pet-Home-System's main-server is licensed under [the GNU GENERAL PUBLIC LICENSE v3](./LICENSE).
+IoT-Pet-Home-System's main-server is licensed under [the GNU GENERAL PUBLIC LICENSE v3](https://www.gnu.org/licenses/gpl-3.0.html).
  
  ```
  Copyright (C) 2017-present, kuj0210, KeonHeeLee, seok8418
